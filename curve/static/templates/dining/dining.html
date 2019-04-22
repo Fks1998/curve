@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">DINING IN</h5>
+                    <div ng-if="week_day">
+                        <h4 class="text-center">
+                            The Curve is Closed Today!
+                        </h4>
+                    </div>
+                    <div ng-if="!vm.answer_yes && !vm.answer_no && !week_day && !vm.is_dining_record">
+                        <h4 class="text-center">Question:</h4>
+                        <div>
+                            <p class="text-center">Will you be dining at the Curve today?</p>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-success" ng-click="vm.Answer('yes')">YES</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-danger" ng-click="vm.Answer('no')">No</button>
+                        </div>
+                    </div>
+                    <div ng-if="!vm.is_dining_record && vm.answer_yes && !vm.is_fetch_points">
+                        <h4 class="text-center">Choose your meal</h4>
+                        <p class="text-center">{{vm.todayDate | date : "fullDate" }}</p>
+                        <form class="form-signin" name="vm.diningForm">
+                            <div class="row">
+                                <div class="form-label-group col-md-4"></div>
+                                <div class="form-label-group col-md-4 ">
+                                    <select id="Year" class="form-control" required ng-model="vm.selected_meal">
+                                        <option value="">Select Meal</option>
+                                        <option value="{{menu.id}}" ng-repeat="menu in vm.menuList">{{menu.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-label-group col-md-4"></div>
+                            </div>
+                        </form>
+                        <div class="text-center">
+                            <button class="btn btn-success" ng-click="vm.dining('yes')">Confirm</button>
+                        </div>
+                    </div>
+                    <div ng-if="!vm.is_dining_record && vm.answer_no">
+                        <h4 class="text-center">
+                            Sorry that you are unable to dine with us today, <br>
+                            See you back here tomorrow!!
+                        </h4>
+                        <p class="text-center text-green" ng-if="vm.points == 10">
+                            YOU HAVE STILL EARNED 10 POINTS!
+                        </p>
+                        <p class="text-center text-red" ng-if="vm.points == 0">
+                            YOU HAVE EARNED NO POINTS!
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-if="vm.is_fetch_points && vm.current_status">
+                        <h4 class="text-center text-green" ng-if="vm.points == 25">
+                            YOU HAVE SUBMITTED BEFORE 8AM AND HAVE EARNED 25 POINTS!
+                        </h4>
+                        <h4 class="text-center text-green" ng-if="vm.points == 15">
+                            YOU HAVE SUBMITTED BEFORE 10AM AND HAVE EARNED 15 POINTS!
+                        </h4>
+                        <h4 class="text-center text-red" ng-if="vm.points == 0">
+                            YOU ARE GOING TO BE DINING IN TODAY! BUT YOU HAVE EARNED NO POINTS!
+                        </h4>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="m-t-20" ng-if="vm.is_fetch_points">
+                        <h5 class="card-title text-center">POINTS</h5>
+                        <progressbar class="progress-striped active"
+                            animate="true" max="500" value="vm.progressValue" type="success">
+                            <i>
+                                <span count-to="{{vm.countTo}}" duration="1" count-from="{{vm.countFrom}}"></span> / 500
+                            </i>
+                        </progressbar>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-if="vm.is_dining_record">
+                        <div ng-if="!vm.today_dining_status">
+                            <h4 class="text-center">
+                                Sorry that you are unable to dine with us today, <br>
+                                See you back here tomorrow!!
+                            </h4>
+                        </div>
+                        <div ng-if="vm.today_dining_status">
+                            <h4 class="text-center">
+                                You are going to be dining in Today!
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">POINTS</h5>
+                    <div ng-if="!vm.freeMealFormShown">
+                        <h5 class="card-title text-center">{{vm.progressValue}}</h5>
+                        <progressbar class="progress-striped active" 
+                            animate="true" max="500" value="vm.progressValue" type="success">
+                            <i>
+                                <span count-to="{{vm.countTo > 500 ? 500 : vm.countTo}}" duration="1" count-from="{{vm.countFrom}}"></span> / 500
+                            </i>
+                        </progressbar>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <div ng-if="vm.progressValue >= 500 && !vm.freeMealFormShown">
+                            <h4>
+                                CONGRATULATIONS <br>YOU CAN NOW HAVE A FREE MEAL!
+                            </h4>
+                            <button class="btn btn-success" ng-click="vm.claimMeal()">CLAIM FREE MEAL</button>
+                        </div>
+                        <div ng-if="vm.progressValue >= 500 && vm.freeMealFormShown">
+                            <div>
+                                <h4 class="text-center">Choose your meal</h4>
+                            </div>
+                            <div class="form-inline justify-content-center">
+                                <div class="row">
+                                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                        <input class="form-control" disabled ng-model="vm.free_meal_data.date" is-open="vm.opened" datepicker-popup="yyyy-MM-dd" />
+                                    </div>
+                                    <button class="btn btn-success" ng-click="vm.open($event)"><i class="fa fa-calendar"></i></button>
+                                </div>
+                                <div class="form-label-group col-md-4 m-t-20"> 
+                                    <select id="Year" class="form-control" required ng-model="vm.free_meal_data.selected_meal" style="width:220px;">
+                                        <option value="">Select Meal</option>
+                                        <option value="{{menu.id}}" ng-repeat="menu in vm.menuList">{{menu.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-label-group col-md-2 m-t-20">
+                                    <button class="btn btn-success" ng-click="vm.getFreeMeal()">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

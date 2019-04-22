@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">MENU</h5>
+                    <div class="text-center">
+                        <a href="/dining">
+                            <button ng-if="vm.is_authenticated" class="btn btn-primary" style="width: 20%;">Proceed?</button>
+                        </a>
+                    </div>
+                    <div ng-repeat="menu in vm.menuList">
+                        <h5>{{menu.name}}</h5>
+                        <div ng-bind-html="menu.description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

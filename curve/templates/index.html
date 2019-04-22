@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="curve" ng-controller="RootController as root">
+<head>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title>Waste Watcher</title>
+  	<!-- Tell the browser to be responsive to screen width -->
+  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  	<base href="/" />
+
+  {% include 'stylesheets.html' %}
+</head>
+
+
+<body>
+ 	<div id="container-fluid">
+    	<div ng-include="'/static/templates/common/header.html'"></div> 
+    	<div class="clearfix"></div>
+    	<div class="content-wrapper" ui-view></div>
+    	{% block containter %}{% endblock %}
+  	</div>
+  	{% include 'javascripts.html' %}
+</body>
+</html>

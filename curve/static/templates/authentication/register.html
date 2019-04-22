@@ -1,0 +1,123 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-8 mx-auto" ng-if="!vm.is_registered">
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h5 class="card-title text-center">Register</h5>
+					<form class="form-signin"  name="vm.registerForm" ng-submit="vm.register()">
+						<div class="row">
+							<div class="form-label-group col-md-6">
+								<input type="text" id="first_name" ng-model="vm.registerData.first_name" class="form-control" placeholder="First Name" required >
+								<label for="first_name">First Name</label>
+							</div>
+							<div class="form-label-group col-md-6">
+								<input type="text" id="last_name" ng-model="vm.registerData.last_name" class="form-control" placeholder="Last Name" required >
+								<label for="last_name">Last Name</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-label-group col-md-6">
+								<input type="email" id="inputEmail" ng-model="vm.registerData.email" class="form-control" placeholder="Email address" required >
+								<label for="inputEmail">Email address</label>
+							</div>
+			
+							<div class="form-label-group col-md-6">
+								<input type="password" id="input_password" ng-model="vm.registerData.password" class="form-control" placeholder="Password" required>
+								<label for="input_password">Password</label>
+							</div>
+						</div>
+						<div class="row" >
+							<div class="form-label-group col-md-12">
+								<input type="password" id="confirm_password" ng-model="vm.registerData.confirm_password" class="form-control" placeholder="Confirm Password" required>
+								<label for="confirm_password">Confirm Password</label>
+							</div>
+						</div>
+						<!-- <div class="row" ng-if="vm.registerData.user_type == 'student'">
+							<div class="form-label-group col-md-6">
+								<input type="password" id="confirm_password" ng-model="vm.registerData.confirm_password" class="form-control" placeholder="Confirm Password" required>
+								<label for="confirm_password">Confirm Password</label>
+							</div>
+							<div class="form-label-group col-md-6">
+								<input type="text" id="course_name" class="form-control" ng-model="vm.registerData.course_name" placeholder="Course Name" required>
+								<label for="course_name">Course Name</label>
+							</div>
+						</div> -->
+						<div class="row" ng-if="vm.registerData.user_type == 'student'">
+							<div class="form-label-group col-md-6">
+								<input type="text" id="course_name" class="form-control" ng-model="vm.registerData.course_name" placeholder="Course Name" required>
+								<label for="course_name">Course Name</label>
+							</div>
+							<div class="form-label-group col-md-6">
+								<select id="Year" class="form-control" style="height:50px;" required ng-model="vm.registerData.selected_year">
+									<option value="">Select Year</option>
+									<option value="1">1st Year</option>
+									<option value="2">2nd Year</option>
+									<option value="3">3rd Year</option>
+								</select>
+							</div>
+						</div>
+						<p>Dietary Requirements</p><br/>
+						<div class="row m-l-10 m-t-30">
+							<div class="custom-control custom-checkbox mb-3" ng-repeat="data in vm.dietaryList">
+								<input type="checkbox" 
+										class="custom-control-input" 
+										data-checklist-model="vm.registerData.selected_dietary" 
+										data-checklist-value="data" id="{{data.value}}">
+								<label class="custom-control-label" for="{{data.value}}">{{data.name}}</label>
+								&nbsp;&nbsp;
+							</div>
+						</div>
+						<p>User Type</p><br/>
+						<div class="row m-l-10 m-t-30">
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="student" ng-model="vm.registerData.user_type" name="user_type" value="student" required>
+								<label class="custom-control-label" for="student">Student</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="staff" ng-model="vm.registerData.user_type" name="user_type" value="staff" required>
+								<label class="custom-control-label" for="staff">Staff</label>
+							</div> 
+						</div>
+						<p class="text-center text-facebook-color">
+							<b>Earn 50 points by signing up!</b>
+						</p>
+						<button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Register</button>
+						<hr class="my-4">
+						<p class="text-center">Already a member?</p>
+						<a href="/login">
+							<button class="btn btn-lg btn-register btn-block text-uppercase" type="submit">
+								Login
+							</button>
+						</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- HOW THIS WORK DETAILS -->
+		<div class="col-sm-12 col-md-12 col-lg-8 mx-auto" ng-if="vm.is_registered">
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h5 class="card-title text-center">HOW THIS WORK</h5>
+					<ul>
+						<li>
+							WasteWatcher is designed to prevent food waste.
+						</li>
+						<li>
+							We need your help to reduce the food waste in our university. With a few simple clicks,
+							you will be able save our environment and get a free meal at the end of it! 
+						</li>
+						<li>
+							All you have to do is answer whether you will be dining at the Curve daily (mon-fri), 
+							if so, choose what meal you want. By completing this by 8am, you wil earn <b>25</b> points, 
+							by 10 am you will earn <b>15</b> points. Even if you say no you will earn <b>10</b> points
+						</li>
+						<li>
+							Once you have reached 500 points you will be able to have a <b>free</b> meal at the Curve!
+						</li>
+					</ul>
+					<button class="btn btn-lg btn-success btn-block text-uppercase" ng-click="vm.goToLogin()">Continue to Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
