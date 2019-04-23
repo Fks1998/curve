@@ -28,7 +28,7 @@ SECRET_KEY = '!h-7jbfhe1!o9v%b@)k^hfjhh%l2yybe7qzidqdmtl!q$3)6jx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thecurve.herokuapp.com']
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media').replace('\\', '/')
 MEDIA_URL = '/media/'
